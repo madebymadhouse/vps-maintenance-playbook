@@ -38,7 +38,7 @@ Create a repeatable way to inspect the VPS without mixing observation with chang
 
 ### Logs
 
-- Identify primary log locations under `/home/samhcharles/logs` and service-specific paths
+- Identify primary log locations under `/home/samhcharles/srv/logs` and service-specific paths
 - Record how to inspect recent failures quickly
 
 ### Scheduled Jobs
@@ -66,6 +66,17 @@ For each audit session, capture:
 ## Verification
 
 The audit is complete when `TOPOLOGY.md` or a dedicated runbook is updated with the findings.
+
+## Automation
+
+Run `scripts/capture-vps-audit.sh` from the repository root to create a dated audit snapshot under `control-plane/AUDITS/`.
+
+Properties of the script:
+
+- read-only
+- does not require root
+- tolerates missing tools
+- avoids reading secret values from env files
 
 ## Failure Handling
 

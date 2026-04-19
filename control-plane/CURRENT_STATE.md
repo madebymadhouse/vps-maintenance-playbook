@@ -28,11 +28,12 @@ Create a stable control plane for development and VPS maintenance so agentic wor
 - Use the `VPS Maintenance Planner` agent for topology, workflow, and maintenance planning tasks
 - Require any implementation-heavy agent to receive a written handoff contract
 - Use `AUDITS/2026-04-19-vps-audit.md` as the baseline verified VPS inventory snapshot
+- Use `AUDITS/2026-04-19-vps-audit-followup.md` as the deeper snapshot for empty placeholder paths, Docker volumes, and port exposure
 
 ## Near-Term Milestones
 
-1. Deepen inventory for `/home/samhcharles/srv/agents/nqita`, `/home/samhcharles/srv/logs`, and proxy ownership
-2. Use `HANDOFFS/2026-04-19-topology-inventory-automation.md` as the first implementation-grade coding contract
+1. Decide whether empty paths under `/home/samhcharles/srv/agents`, `/home/samhcharles/srv/logs`, and `/home/samhcharles/srv/volumes` should stay reserved or be cleaned up
+2. Start using `scripts/capture-vps-audit.sh` for repeatable read-only inventory snapshots
 3. Write at least one additional runbook for deploy or backup recovery
 4. Review and refine machine boundaries after one week of real use
 

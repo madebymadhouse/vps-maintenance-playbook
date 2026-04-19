@@ -55,6 +55,10 @@
 - Bot health endpoint is exposed on host port `9100`
 - Bot container bind-mounts `/home/samhcharles/srv/bots/chopsticks-lean/data` to `/app/data`
 - Postgres and Redis persistence use Docker named volumes declared in Compose
+- Docker named volumes observed during the deeper audit:
+  - `chopsticks-lean_postgres_data`
+  - `chopsticks-lean_redis_data`
+- Running containers currently use Docker's default `json-file` logging driver
 
 ### Systemd
 
@@ -70,6 +74,9 @@
 - Logs root: `/home/samhcharles/srv/logs`
 - Proxy root: `/home/samhcharles/srv/proxy`
 - Volumes root: `/home/samhcharles/srv/volumes`
+- Listening ports observed from an unprivileged audit snapshot:
+  - `22` for SSH
+  - `9100` for the chopsticks lean health or metrics endpoint
 
 ### Known Live Directories
 
@@ -81,6 +88,16 @@
 - Volume directories observed:
   - `/home/samhcharles/srv/volumes/chopsticks`
   - `/home/samhcharles/srv/volumes/nqita`
+- Log directories observed:
+  - `/home/samhcharles/srv/logs/chopsticks`
+  - `/home/samhcharles/srv/logs/nqita`
+
+### Directory State During Deep Audit
+
+- `/home/samhcharles/srv/agents/nqita` existed but was empty during the deeper audit
+- `/home/samhcharles/srv/logs/chopsticks` and `/home/samhcharles/srv/logs/nqita` existed but were empty during the deeper audit
+- `/home/samhcharles/srv/volumes/chopsticks` and `/home/samhcharles/srv/volumes/nqita` existed but were empty during the deeper audit
+- `/home/samhcharles/srv/proxy/caddy` existed but was empty during both audit passes
 
 ## Backups And Restore
 
@@ -95,13 +112,15 @@
 
 - Proxy path exists at `/home/samhcharles/srv/proxy/caddy`
 - No Caddy config files were present in that directory during the audit
-- Reverse proxy ownership and active domain routing remain unverified
+- No listeners on `80` or `443` were observed in the unprivileged socket snapshot
+- Reverse proxy ownership and active domain routing remain unverified, but there is no current evidence of an active local Caddy deployment on this host
 
 ## Scheduling
 
 - No user crontab entries were present during the audit
 - Only standard system timers were observed in the initial timer pass
 - No custom backup or deploy timer has been verified yet
+- A watchdog script exists at `/home/samhcharles/srv/bots/chopsticks-lean/scripts/ops/chopsticks-watchdog.sh`, but scheduling or activation of that script has not yet been verified
 
 ## Responsibility Boundaries
 
@@ -120,7 +139,7 @@
 These still need to be documented explicitly or verified in a deeper audit:
 
 - Whether any privileged systemd units exist outside the unprivileged audit view
-- What domains, TLS setup, and upstream routes are currently intended for Caddy or another proxy layer
-- Whether `/home/samhcharles/srv/agents/nqita` is runtime-active or only staged
-- Whether `/home/samhcharles/srv/volumes/chopsticks` and `/home/samhcharles/srv/volumes/nqita` are current sources of truth or remnants from older layouts
+- What domains, TLS setup, and upstream routes are currently intended if reverse proxying is reintroduced later
+- Whether `/home/samhcharles/srv/agents/nqita` is intended for future runtime use or is only a reserved path right now
+- Whether `/home/samhcharles/srv/volumes/chopsticks` and `/home/samhcharles/srv/volumes/nqita` are reserved placeholders or remnants from older layouts
 - Which tasks must always be staged in WSL before touching the VPS
