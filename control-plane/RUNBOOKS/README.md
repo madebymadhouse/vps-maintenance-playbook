@@ -1,20 +1,23 @@
 # Runbooks
 
-Create a runbook here when an operation becomes repeatable or risky.
+Put repeatable VPS tasks here.
 
-Candidate runbooks to write next:
+Write a runbook when a task is risky, easy to forget, or likely to be repeated by a fresh AI or human.
 
-- VPS service audit
-- Chopsticks deploy and verify
-- OpenClaw agent contract update
-- Backup and restore flow
-- Reverse proxy and domain map
+## Good Candidates
 
-Each runbook should include:
+- VPS audit
+- Deploy and verify
+- Check logs
+- Backup
+- Restore
+- Restart or recover a service
+
+## Keep Each Runbook Simple
 
 1. Purpose
 2. Preconditions
 3. Exact commands or checkpoints
 4. Verification
 5. Failure handling
-6. What to update afterward
+6. What docs to update afterward

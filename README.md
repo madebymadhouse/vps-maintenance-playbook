@@ -1,66 +1,64 @@
 # Agent Control Plane
 
-An open-source control plane for agentic development across Windows, WSL, and a Linux VPS.
+This repo is a practical VPS maintenance notebook.
 
-The point of this repo is simple: stop losing environment context between chats, models, and machines.
+Its job is simple: a fresh AI or a tired human should be able to open this repo and understand what runs on the VPS, how to inspect it safely, and what to update after making changes.
 
-## What This Repo Gives You
+Other developers can copy the pattern for their own server, but this repo is grounded in one real environment rather than a generic framework.
 
-- A custom VS Code agent at `.github/agents/vps-maintenance-planner.agent.md`
-- A control-plane document set under `control-plane/`
-- A repeatable VPS audit workflow
-- A read-only snapshot script for collecting runtime inventory
+## What Is Here
 
-## Quick Start
+- A first-read page for fresh agents and maintainers
+- Current state and topology docs
+- Runbooks for repeatable VPS tasks
+- Audit snapshots based on verified runtime inspection
+- A read-only audit script for collecting inventory
+
+## Start Here
 
 1. Read `control-plane/START_HERE_FOR_AGENTS.md`
 2. Read `control-plane/CURRENT_STATE.md`
 3. Read `control-plane/TOPOLOGY.md`
 4. Read `control-plane/WORKFLOWS.md`
-5. Use `control-plane/HANDOFFS/` before asking a coding agent to mutate a repo
+5. Read the relevant runbook before making changes
 
 ## Repository Layout
 
 - `.github/agents/`
-	- Custom agent definitions for VS Code
+	- Optional custom agent definition for VPS maintenance work
 - `control-plane/`
-	- Current state, topology, workflows, handoffs, audits, and runbooks
+	- State, topology, workflows, audits, handoffs, and runbooks
 - `scripts/`
-	- Read-only helper scripts for repeatable environment inspection
+	- Read-only helpers for repeatable inspection
 
-## Why This Exists
+## Scope
 
-Most agent workflows degrade because:
+This repo is for:
 
-- planning stays in chat instead of docs
-- runtime facts are mixed with guesses
-- coding agents are sent into repos without a contract
-- Windows, WSL, and VPS responsibilities are never written down
+- understanding what is running on the VPS
+- keeping maintenance knowledge out of chat-only history
+- making common inspection and recovery tasks repeatable
+- leaving clear notes for the next operator
 
-This repo fixes that by making the environment explicit.
+This repo is not for:
 
-## Current Scope
-
-This version is optimized for:
-
-- OpenClaw-oriented agent orchestration
-- Discord bot hosting on a VPS
-- separating planning from implementation
-- documenting real runtime inventory before maintenance work
+- application source code
+- broad AI workflow theory
+- product documentation
 
 ## Useful Files
 
-- `control-plane/TOPOLOGY.md`
+- `control-plane/START_HERE_FOR_AGENTS.md`
 - `control-plane/CURRENT_STATE.md`
+- `control-plane/TOPOLOGY.md`
 - `control-plane/RUNBOOKS/vps-audit.md`
-- `control-plane/HANDOFFS/2026-04-19-topology-inventory-automation.md`
 - `scripts/capture-vps-audit.sh`
 
 ## Example Prompts
 
-- Map my current VPS runtime and update the topology with verified facts only.
-- Write a handoff for a coding agent to change deployment behavior safely.
-- Run the VPS audit workflow and tell me what is real versus undocumented.
+- Inspect the VPS and update the topology with verified facts only.
+- Check what is running, what looks risky, and what is still undocumented.
+- Read the current state and tell me the safest next maintenance step.
 
 ## License
 

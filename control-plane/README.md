@@ -1,44 +1,37 @@
-# Control Plane
+# VPS Docs
 
-This folder is the single source of truth for how work moves across Windows, WSL, the VPS, OpenClaw, and Discord bot repositories.
+This folder is the working memory for the VPS.
 
-If an agent or model is about to do meaningful work, it should read this folder first instead of relying on chat history.
-
-## Purpose
-
-- Reduce context loss between sessions and models
-- Keep machine roles explicit
-- Make plans, handoffs, and runbooks reusable
-- Separate verified reality from desired future changes
+If an agent or human is about to inspect, change, or recover something on the server, they should read this folder first instead of relying on chat history.
 
 ## First Read Order
 
 1. `CURRENT_STATE.md`
 2. `TOPOLOGY.md`
 3. `WORKFLOWS.md`
-4. `TEMPLATES/HANDOFF_TEMPLATE.md`
-5. Relevant `RUNBOOKS/*.md`
+4. Relevant `RUNBOOKS/*.md`
+5. `TEMPLATES/HANDOFF_TEMPLATE.md` if code changes are needed
+
+## What Belongs Here
+
+- what is running now
+- what has been verified
+- what is risky, broken, or still unknown
+- how to perform repeatable VPS tasks safely
+- what changed during the last maintenance pass
 
 ## Working Rules
 
-- Update `CURRENT_STATE.md` when live state changes or a major decision is made
-- Update `TOPOLOGY.md` when services, repos, or ownership boundaries change
-- Update `WORKFLOWS.md` when task flow changes between Windows, WSL, VPS, or agents
-- Create or revise a runbook when the same operation happens more than once
-- Do not leave important context only in chat
+- Update `CURRENT_STATE.md` when the live state changes or a maintenance decision matters later
+- Update `TOPOLOGY.md` when services, paths, ports, or ownership boundaries change
+- Add or revise a runbook when the same task happens more than once
+- Keep verified facts separate from guesses or future ideas
+- Do not leave important maintenance context only in chat
 
-## Example Anchors
+## Done Means
 
-For your own environment, define these paths:
+A VPS task is not done until:
 
-- OpenClaw framework repo location
-- Discord bot runtime repo location
-- Workspace custom agent location
-
-## Definition Of Done For Environment Work
-
-An environment task is not done until:
-
-1. The change is verified or the blocker is documented
-2. The relevant runbook or state doc is updated
-3. The next agent can understand what changed without rereading chat logs
+1. The change is verified or the blocker is written down
+2. The relevant doc or runbook is updated
+3. The next operator can understand what changed without rereading chat logs

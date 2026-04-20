@@ -1,43 +1,40 @@
 # Current State
 
-Last updated: 2026-04-19
+Last updated: 2026-04-20
 
-## Objective
+## Purpose
 
-Create a stable control plane for development and VPS maintenance so agentic work stops depending on fragile chat context.
+This repo exists so VPS maintenance does not depend on chat memory.
 
 ## Verified Facts
 
-- The environment is split across Windows (control), WSL (staging), and VPS (runtime)
-- OpenClaw agent framework is integrated for coder orchestration
-- Discord bot workspace has intentional VPS-friendly deployment
-- OpenClaw coder workflow is strict, contract-driven, and expects explicit plans and memory files
-- A workspace-level custom agent is configured for maintenance planning
+- The VPS is the live runtime
+- The main live workload is a Discord bot stack deployed with Docker Compose
+- Audit snapshots exist in `AUDITS/` and should be treated as the baseline verified inventory
+- A read-only audit script exists at `scripts/capture-vps-audit.sh`
+- Fresh operators should start with the docs in this folder before touching the server
 
-## Active Problems
+## What Is Working
 
-- Workflow knowledge is scattered across repos, chat history, and machine-specific context
-- Agent behavior is inconsistent because the first-read context is not centralized
-- Planning, implementation, and runtime maintenance are too easy to blend together
-- Cross-machine responsibilities are not yet codified in one place
+- The repo now has a clear first-read path for a fresh AI or human
+- Topology and runtime inventory have been documented from real audit passes
+- The maintenance workflow distinguishes inspection from code changes
 
-## Immediate Direction
+## What Still Needs Work
 
-- Use this `control-plane` folder as the first landing zone for future agent work
-- Use the `VPS Maintenance Planner` agent for topology, workflow, and maintenance planning tasks
-- Require any implementation-heavy agent to receive a written handoff contract
-- Use audit snapshots in `AUDITS/` as baseline verified inventory
-- Run `scripts/capture-vps-audit.sh` to create fresh audits when topology needs verification
+- More runbooks are needed for repeated tasks such as deploy, backup, restore, and logs
+- Some reserved directories and ownership boundaries are still undocumented
+- Reverse proxy and scheduled maintenance are still only partially verified
 
-## Near-Term Milestones
+## Current Operating Direction
 
-1. Decide whether reserved empty paths should stay or be cleaned up
-2. Start using `scripts/capture-vps-audit.sh` for repeatable read-only inventory snapshots
-3. Write additional runbooks for deploy or backup recovery
-4. Review and refine machine boundaries after one week of real use
+- Use this repo as the first stop for VPS maintenance work
+- Audit first when the live state is uncertain
+- Write down anything the next operator would otherwise have to rediscover
+- Keep repo-specific code changes in the relevant application repo, not here
 
-## Open Questions
+## Next Practical Additions
 
-- Where should the long-term versioned home for this control plane live if it grows beyond the workspace root?
-- Which tasks should always happen in WSL before touching the VPS?
-- Which changes should require explicit approval before an agent executes them?
+1. Write a deploy runbook once the deploy steps are stable
+2. Write a backup and restore runbook once the exact recovery flow is verified
+3. Keep refreshing the topology when the live server changes

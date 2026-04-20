@@ -1,60 +1,45 @@
 # Workflows
 
-## Default Task Flow
+## Default Flow
 
-1. Start in the control plane
-2. Identify machine in scope
-3. Read current state and topology
-4. Produce a short plan
-5. Decide whether the task is planning, implementation, or runtime maintenance
-6. If implementation is needed, write a handoff contract
-7. Execute or delegate
-8. Record outcome back in the control plane
+1. Start with `CURRENT_STATE.md` and `TOPOLOGY.md`
+2. Decide whether the task is inspect, change, or recover
+3. Read the matching runbook if one exists
+4. Verify the current state before touching anything
+5. Make the smallest correct change
+6. Verify the result
+7. Update the docs if the live state or known process changed
 
-## Task Lanes
+## Inspect
 
-### Planning Lane
-
-Use when the problem is unclear, spread across machines, or likely to confuse agents.
-
-Outputs:
-- clarified scope
-- verified facts
-- gaps list
-- immediate plan
-- documentation updates
-
-### Implementation Lane
-
-Use when the target repo and change are already clear.
+Use this for audits, logs, runtime checks, and questions about what is running.
 
 Rules:
-- must begin with a handoff contract
-- must name files, constraints, and success criteria
-- must record verification outcome afterward
+- prefer read-only commands
+- record verified facts, not guesses
+- update topology or current state when you learn something important
 
-### Runtime Maintenance Lane
+## Change
 
-Use for VPS checks, deploys, logs, backups, migrations, and service recovery.
+Use this for deploys, config changes, migrations, and code-related maintenance.
 
 Rules:
-- prefer runbook-driven work
-- distinguish observation from mutation
-- leave behind a state update if live behavior changed
+- start from the current verified state
+- use a handoff contract before repo code changes
+- keep the change narrow and verify it before stopping
+
+## Recover
+
+Use this for outages, bad deploys, failed migrations, and rollback work.
+
+Rules:
+- stabilize first
+- prefer runbook steps over improvisation
+- write down what happened, what was changed, and what still needs follow-up
 
 ## Anti-Drift Rules
 
-- Do not use chat history as the only durable plan
-- Do not send a coding agent into a repo without a contract
-- Do not let live VPS state become the only record of how something works
-- Do not mix speculative design with production maintenance in the same step
-
-## Weekly Ritual
-
-Once per week:
-
-1. Review `CURRENT_STATE.md`
-2. Prune stale plans
-3. Add missing runbooks discovered during the week
-4. Tighten agent boundaries where confusion occurred
-5. Record one lesson that would have saved time earlier
+- Do not rely on chat as the only record
+- Do not mix guesses with verified runtime facts
+- Do not make code changes without a clear scope and handoff
+- Do not finish a VPS task without leaving behind updated notes when needed

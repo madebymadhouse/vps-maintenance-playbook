@@ -1,46 +1,33 @@
 # Start Here For Agents
 
-Read this before doing meaningful work in `/home/samhcharles`.
+Read this before doing VPS work.
 
-## Your Job
-
-You are working in a multi-machine environment with:
-
-- Windows as the VS Code control surface
-- WSL as local Linux staging
-- VPS as live runtime
-
-Do not assume chat history is complete. Use the control plane as the durable context source.
+Your job is not to guess. Your job is to understand what is running, inspect it safely, make the smallest correct change, and leave the docs clearer than you found them.
 
 ## Required First Reads
 
-1. `/home/samhcharles/control-plane/CURRENT_STATE.md`
-2. `/home/samhcharles/control-plane/TOPOLOGY.md`
-3. `/home/samhcharles/control-plane/WORKFLOWS.md`
-4. `/home/samhcharles/control-plane/TEMPLATES/HANDOFF_TEMPLATE.md` if code changes are needed
-5. Relevant runbook in `/home/samhcharles/control-plane/RUNBOOKS/`
+1. `CURRENT_STATE.md`
+2. `TOPOLOGY.md`
+3. `WORKFLOWS.md`
+4. Relevant runbook in `RUNBOOKS/`
+5. `TEMPLATES/HANDOFF_TEMPLATE.md` if code changes are needed
 
-## Required Questions Before Acting
+## Questions To Answer Before Acting
 
-1. What machine is in scope?
-2. What repo or runtime service is in scope?
-3. Is this planning, implementation, or maintenance?
-4. What will prove success?
-5. Which control-plane document must be updated afterward?
+1. Is this task inspect, change, or recover?
+2. What service or repo is in scope?
+3. What will prove success?
+4. What is the safest way to verify the result?
+5. Which document needs an update when the work is done?
 
-## Behavioral Rules
+## Rules
 
 - Prefer verified facts over assumptions
-- Do not mix planning with destructive maintenance in one leap
-- Do not send coding agents into repos without a handoff contract
-- If runtime facts are unclear, audit first and mark unknowns explicitly
-- Leave the environment easier to understand than you found it
+- If the current state is unclear, audit first
+- Keep observation separate from mutation
+- Do not make repo code changes without a written handoff
+- Leave behind the state needed for the next operator
 
-## Canonical Paths
+## Path Notes
 
-*These paths will vary by user. Examples below for reference:*
-
-- Control plane: `$WORKSPACE_ROOT/control-plane`
-- OpenClaw: `$WORKSPACE_ROOT/repos/hank-duck/openclaw`
-- Chopsticks lean: `$WORKSPACE_ROOT/srv/bots/chopsticks-lean`
-- Workspace custom agent: `$WORKSPACE_ROOT/.github/agents/vps-maintenance-planner.agent.md`
+Examples in this repo use one real environment. If you copy this pattern for your own server, replace the paths and service names with your own.
