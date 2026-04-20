@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Mad House agents — canonical source
+    url: https://github.com/madebymadhouse/agents
+    about: All Mad House AI agents live here.
+  - name: chopsticks-lean — bot repo
+    url: https://github.com/madebymadhouse/chopsticks-lean
+    about: The bot this VPS runs.

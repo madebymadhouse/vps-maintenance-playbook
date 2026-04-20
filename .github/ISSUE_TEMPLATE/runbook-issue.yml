@@ -1,0 +1,28 @@
+name: Runbook issue
+description: A runbook step is wrong, missing, or led to a bad outcome
+labels: [runbook]
+body:
+  - type: input
+    id: runbook
+    attributes:
+      label: Which runbook?
+      description: Path in control-plane/RUNBOOKS/
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What went wrong?
+      description: What does the runbook say vs what actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment snapshot
+      description: Paste relevant output from docker ps, systemctl status, etc.
+      render: shell
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix or missing step
