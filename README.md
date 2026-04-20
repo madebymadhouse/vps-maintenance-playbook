@@ -103,6 +103,34 @@ It's not for application source code, product docs, or AI workflow theory.
 
 ---
 
+## Agents
+
+All agents are in `.github/agents/`. The core ones for this repo:
+
+| Agent | What it does |
+|---|---|
+| `@vps-maintenance-planner` | VPS-specific maintenance — topology, safe change sequences, runbooks |
+| `@context-keeper` | Write session logs and handoffs after every maintenance session |
+| `@orchestrator` | Coordinate a full maintenance pass using the whole fleet |
+| `@security` | Security audit — exposed ports, Docker config, secrets on disk |
+| `@auditor` | Structured audit of runbooks, docs, and operational readiness |
+
+Full agent roster: [madebymadhouse/agents](https://github.com/madebymadhouse/agents)
+
+---
+
+## Contributing
+
+If you're maintaining this VPS, keep this repo current. After any maintenance session:
+1. Update `control-plane/CURRENT_STATE.md` with anything that changed
+2. Update `control-plane/TOPOLOGY.md` if the service layout changed
+3. Write a `control-plane/HANDOFFS/YYYY-MM-DD.md` via `@context-keeper` if the session was significant
+4. Add a runbook to `control-plane/RUNBOOKS/` for any repeated task you had to figure out manually
+
+The repo is only as useful as it is current. Stale state is worse than no state — it sends the next operator in the wrong direction.
+
+---
+
 ## License
 
 [MIT](./LICENSE)
