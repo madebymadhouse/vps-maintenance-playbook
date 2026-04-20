@@ -13,6 +13,15 @@ Write a runbook when a task is risky, easy to forget, or likely to be repeated b
 - Restore
 - Restart or recover a service
 
+## Current Runbooks
+
+- `vps-audit.md`
+- `docker-deploy-and-verify.md`
+- `logs-health-and-status.md`
+- `backup-and-restore.md`
+- `incident-triage.md`
+- `session-start.md`
+
 ## Keep Each Runbook Simple
 
 1. Purpose

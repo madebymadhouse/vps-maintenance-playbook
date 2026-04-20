@@ -20,6 +20,14 @@ If an agent or human is about to inspect, change, or recover something on the se
 - how to perform repeatable VPS tasks safely
 - what changed during the last maintenance pass
 
+## Current Runbooks
+
+- `RUNBOOKS/vps-audit.md`
+- `RUNBOOKS/docker-deploy-and-verify.md`
+- `RUNBOOKS/logs-health-and-status.md`
+- `RUNBOOKS/backup-and-restore.md`
+- `RUNBOOKS/incident-triage.md`
+
 ## Working Rules
 
 - Update `CURRENT_STATE.md` when the live state changes or a maintenance decision matters later
