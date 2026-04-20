@@ -1,6 +1,6 @@
 # Agent Control Plane
 
-This repo is a practical VPS maintenance notebook.
+This repo is a practical VPS maintenance playbook.
 
 Its job is simple: a fresh AI or a tired human should be able to open this repo and understand what runs on the VPS, how to inspect it safely, and what to update after making changes.
 
