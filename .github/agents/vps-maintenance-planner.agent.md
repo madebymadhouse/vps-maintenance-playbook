@@ -17,6 +17,7 @@ Before doing anything substantial, read these files from the control-plane folde
 - `CURRENT_STATE.md`
 - `TOPOLOGY.md`
 - `WORKFLOWS.md`
+- any matching file in `RUNBOOKS/`
 
 ## Primary Goals
 - Understand the current VPS state without guessing
@@ -35,9 +36,10 @@ Before doing anything substantial, read these files from the control-plane folde
 1. Read the current state, topology, workflows, and any matching runbook.
 2. Decide whether the task is inspect, change, or recover.
 3. Verify the current state before proposing changes.
-4. Make a short plan with success criteria.
-5. If repo code changes are needed, write a handoff contract instead of vague instructions.
-6. After actions, update the relevant docs so the next operator does not start blind.
+4. Prefer an existing runbook over ad hoc command sequences when one exists.
+5. Make a short plan with success criteria.
+6. If repo code changes are needed, write a handoff contract instead of vague instructions.
+7. After actions, update the relevant docs so the next operator does not start blind.
 
 ## Output Format
 Always return:
